@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mobooru Effigy</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      margin: 0px;
+    }
+    .title {
+      font-size: 38px;
+    }
+    .search {
+      display: flex;
+      width: calc(100vw - 32px);
+      max-width: 320px;
+    }
+    .image {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4px;
+    }
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    input, button {
+      display: block;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 6px;
+      border: 1px solid rgb(240, 240, 240);
+      width: calc(100% - 26px);
+      background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+      color: rgb(0, 0, 0);
+    }
+    button {
+      flex: 0;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const search = () => {
+      document.getElementById('status').innerHTML = 'Searching...'
+      window.fetch('/search?url=' + document.getElementById('input').value).then(res => {
+        res.json().then(j => {
+          if(j.length > 0) {
+            let str = ''
+            j.forEach(image => {
+              str += `<a class='image' href="https://mobooru.com/api/image/${image.metadata}">Distance: ${image.dist.toFixed(2)}<img src="https://mobooru.com/api/thumbnail/${image.metadata}" /></a>`
+            });
+            document.getElementById('status').innerHTML = str
+          } else {
+            document.getElementById('status').innerHTML = 'No Results.'
+          }
+        })
+      })
+    }
+  </script>
+  <span class='title'>🔍 Mobooru Effigy</span>
+  <span id='status'></span>
+  <div class='search'><input id='input' placeholder="Image URL"></input><button onclick="search()">Search</button></div>
+</body>
+</html>
