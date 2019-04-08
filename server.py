@@ -1,5 +1,5 @@
 from flask import Flask, request
-app = Flask(__name__, static_url_path='', static_folder='./')
+app = Flask(__name__, static_url_path='', static_folder='./', port=80)
 
 from insert import queue
 from search import search
