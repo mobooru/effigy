@@ -1,5 +1,5 @@
 from flask import Flask, request
-app = Flask(__name__, static_url_path='', static_folder='./', port=80)
+app = Flask(__name__, static_url_path='', static_folder='./')
 
 from insert import queue
 from search import search
@@ -46,3 +46,5 @@ def searchHandle():
 @app.route("/")
 def root():
   return app.send_static_file('index.html')
+
+app.run(host='effigy.mobooru.com', port=80)
