@@ -10,12 +10,10 @@ def authenticate(reqtoken):
   token = tokens.find_one({ "token": reqtoken })
   if not token:
     return False
-  print(token['name'])
 
   user = users.find_one({ "name": token['name'] })
   if not user:
     return False
-  print(user['tier'])
 
   if not (user['tier'] == 'admin' or user['tier'] == 'moderator'):
     return False
