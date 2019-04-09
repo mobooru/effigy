@@ -17,6 +17,7 @@ def handleQueue():
 
   try:
     match.add(image.url, image.query)
+    print("Added " + image.query + "to the index.")
   except:
     print("An error occured when processing " + image.url)
 
