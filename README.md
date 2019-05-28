@@ -1,5 +1,5 @@
 # 🔍 Mobooru Effigy
-The reverse image search engine powering Mobooru.
+Mobooru's cold storage solution with reverse image search.
 ___
 This repo is currently not documented.
 
