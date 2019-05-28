@@ -19,6 +19,7 @@ class WebSuccess:
     )
 
 class Image:
-  def __init__(self, url, query):
+  def __init__(self, url, query, thumb):
     self.url = url
     self.query = query
+    self.thumb = thumb
